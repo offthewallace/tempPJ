@@ -284,8 +284,8 @@ void free(void* ptr)
 void* realloc(void* oldptr, size_t size)
 {
 
-    size_t oldsize;
-    void *newptr;
+    //size_t oldsize;
+    //void *newptr;
     /* IMPLEMENT THIS */
     if (oldptr==NULL){
 
