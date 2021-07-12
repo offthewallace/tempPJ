@@ -82,7 +82,7 @@ static size_t GET(void* p){
 
 //#define PUT(p, val)  (*(unsigned int *)(p) = (val))    
 
-static void PUT(size_t p, size_t val){
+static void PUT(void* p, size_t val){
 
     *(unsigned int *)(p) = val;
 
@@ -91,14 +91,14 @@ static void PUT(size_t p, size_t val){
 /* Read the size and allocated fields from address p */
 //#define GET_SIZE(p)  (GET(p) & ~0x7)
 
-static size_t GET_SIZE(size_t p){
+static size_t GET_SIZE(void* p){
 
     return (GET(p) & ~0x7);
 }
 
 //#define GET_ALLOC(p) (GET(p) & 0x1) 
 
-static size_t GET_ALLOC(size_t p){
+static size_t GET_ALLOC(void* p){
 
     return (GET(p) & 0x1); 
 }
@@ -232,7 +232,7 @@ void free(void* ptr)
     coalesce(ptr);
 }
 
-static void *coalesce(void *bp)
+static void* coalesce(void *bp)
 {
     size_t prev_alloc = GET_ALLOC(FTRP(PREV_BLKP(bp)));
     size_t next_alloc = GET_ALLOC(HDRP(NEXT_BLKP(bp)));
