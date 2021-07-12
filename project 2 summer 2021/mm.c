@@ -194,15 +194,15 @@ static void place(void *bp, size_t asize){
     size_t csize = GET_SIZE(HDRP(bp));   
 
     if ((csize - asize) >= (2*DSIZE)) { 
-	PUT(HDRP(bp), PACK(asize, 1));
-	PUT(FTRP(bp), PACK(asize, 1));
-	bp = NEXT_BLKP(bp);
-	PUT(HDRP(bp), PACK(csize-asize, 0));
-	PUT(FTRP(bp), PACK(csize-asize, 0));
+	    PUT(HDRP(bp), PACK(asize, 1));
+	    PUT(FTRP(bp), PACK(asize, 1));
+	    bp = NEXT_BLKP(bp);
+	    PUT(HDRP(bp), PACK(csize-asize, 0));
+	    PUT(FTRP(bp), PACK(csize-asize, 0));
     }
     else { 
-	PUT(HDRP(bp), PACK(csize, 1));
-	PUT(FTRP(bp), PACK(csize, 1));
+	    PUT(HDRP(bp), PACK(csize, 1));
+	    PUT(FTRP(bp), PACK(csize, 1));
     }
 }
 
@@ -229,7 +229,7 @@ bool mm_init(void)
 void* malloc(size_t size)
 {
     /* IMPLEMENT THIS */
-    /*
+    
     size_t asize;  
     size_t extendsize; 
     char *bp;      
@@ -241,6 +241,7 @@ void* malloc(size_t size)
 	    asize = 2*DSIZE;                                       
     else
 	    asize = DSIZE * ((size + (DSIZE) + (DSIZE-1)) / DSIZE);
+    
     if ((bp = find_fit(asize)) != NULL) {  
 	    place(bp, asize);                  
 	    return bp;
@@ -251,9 +252,6 @@ void* malloc(size_t size)
 	    return NULL;                                  //line:vm:mm:growheap2
     place(bp, asize);                                 //line:vm:mm:growheap3
     return bp;
-    */
-   return NULL;
-
 }
 
 /*
