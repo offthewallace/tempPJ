@@ -63,8 +63,6 @@ static size_t  MAX(size_t  x, size_t  y){
     return (x) > (y)? (x) : (y) ;
     }
 
-/* Pack a size and allocated bit into a word */
-//#define PACK(size, alloc)  ((size) | (alloc)) 
 
 static size_t PACK(size_t size,size_t alloc){
 
@@ -73,14 +71,12 @@ static size_t PACK(size_t size,size_t alloc){
 }
 
 
-/* Read and write a word at address p */
-//#define GET(p)       (*(unsigned int *)(p)) 
+ 
 static size_t GET(void* p){
 
     return (*(unsigned int *)(p)) ; 
 }
 
-//#define PUT(p, val)  (*(unsigned int *)(p) = (val))    
 
 static void PUT(void* p, size_t val){
 
@@ -88,36 +84,30 @@ static void PUT(void* p, size_t val){
 
 }
 
-/* Read the size and allocated fields from address p */
-//#define GET_SIZE(p)  (GET(p) & ~0x7)
+
 
 static size_t GET_SIZE(void* p){
 
     return (GET(p) & ~0x7);
 }
 
-//#define GET_ALLOC(p) (GET(p) & 0x1) 
 
 static size_t GET_ALLOC(void* p){
 
     return (GET(p) & 0x1); 
 }
 
-/* Given block ptr bp, compute address of its header and footer */
-//#define HDRP(bp)       ((char *)(bp) - WSIZE)
 static char * HDRP(char* bp){
 
     return ((char *)(bp) - WSIZE); 
 }
 
-//#define FTRP(bp)       ((char *)(bp) + GET_SIZE(HDRP(bp)) - DSIZE)
 
 static char * FTRP(char* bp){
 
     return ((char *)(bp) + GET_SIZE(HDRP(bp)) - DSIZE);
 }
-/* Given block ptr bp, compute address of next and previous blocks */
-//#define NEXT_BLKP(bp)  ((char *)(bp) + GET_SIZE(((char *)(bp) - WSIZE))) 
+
 
 
 static char * NEXT_BLKP(char * bp){ 
@@ -131,8 +121,6 @@ static char * PREV_BLKP(char * bp){
  return ((char *)(bp) - GET_SIZE(((char *)(bp) - DSIZE)));
 }
 
-
-/* $end mallocmacros */
 
 /* rounds up to the nearest multiple of ALIGNMENT */
 static size_t align(size_t x)
@@ -241,9 +229,9 @@ bool mm_init(void)
 void* malloc(size_t size)
 {
     /* IMPLEMENT THIS */
-
-    size_t asize;      /* Adjusted block size */
-    size_t extendsize; /* Amount to extend heap if no fit */
+    /*
+    size_t asize;  
+    size_t extendsize; 
     char *bp;      
 
     if (size == 0)
@@ -263,18 +251,25 @@ void* malloc(size_t size)
 	    return NULL;                                  //line:vm:mm:growheap2
     place(bp, asize);                                 //line:vm:mm:growheap3
     return bp;
+    */
+   return NULL;
+
 }
 
 /*
  * free
  */
 void free(void* ptr)
-{
+{   
+
+    return NULL;
+    /*
     size_t size = GET_SIZE(HDRP(ptr));
 
     PUT(HDRP(ptr), PACK(size, 0));
     PUT(FTRP(ptr), PACK(size, 0));
     coalesce(ptr);
+    */
 }
 
 
@@ -287,6 +282,7 @@ void* realloc(void* oldptr, size_t size)
     //size_t oldsize;
     //void *newptr;
     /* IMPLEMENT THIS */
+    return NULL;
     if (oldptr==NULL){
 
         return mm_malloc(size);
@@ -313,7 +309,7 @@ void* realloc(void* oldptr, size_t size)
 
     return newptr;
     */
-   return NULL;
+   //return NULL;
 }
 
 /*
