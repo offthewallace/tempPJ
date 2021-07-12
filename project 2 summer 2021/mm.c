@@ -142,7 +142,7 @@ static size_t align(size_t x)
 
 
 static void* coalesce(void *bp){
-
+    
     size_t prev_alloc = GET_ALLOC(FTRP(PREV_BLKP(bp)));
     size_t next_alloc = GET_ALLOC(HDRP(NEXT_BLKP(bp)));
     size_t size = GET_SIZE(HDRP(bp));
@@ -280,13 +280,13 @@ void free(void* ptr)
 
 /*
  * realloc
-
+ */
 void* realloc(void* oldptr, size_t size)
 {
 
     size_t oldsize;
     void *newptr;
-   
+    /* IMPLEMENT THIS */
     if (oldptr==NULL){
 
         return mm_malloc(size);
@@ -298,7 +298,7 @@ void* realloc(void* oldptr, size_t size)
         return 0;
     }
     
-    
+    /*
     newptr = mm_malloc(size);
 
     
@@ -312,8 +312,10 @@ void* realloc(void* oldptr, size_t size)
     mm_free(oldptr);
 
     return newptr;
+    */
+   return NULL;
 }
-*/
+
 /*
  * calloc
  * This function is not tested by mdriver, and has been implemented for you.
