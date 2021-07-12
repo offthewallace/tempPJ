@@ -262,7 +262,7 @@ void* malloc(size_t size)
 void free(void* ptr)
 {   
 
-    return NULL;
+    return ;
     /*
     size_t size = GET_SIZE(HDRP(ptr));
 
